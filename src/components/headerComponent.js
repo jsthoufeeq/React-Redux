@@ -1,11 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class HeaderComponent extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <div>Header works!!!</div>
+            <div>
+                <div> count is {this.props.count}</div>
+                <div> name is {this.props.name}</div>
+            </div>
         )
     }
 }
 
-export default HeaderComponent;
+function mapStateToProps(state) {
+   return {
+       count: state.counterReducer,
+       name: state.nameReducer
+   } 
+}
+
+export default connect(mapStateToProps)(HeaderComponent);
